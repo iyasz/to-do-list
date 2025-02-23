@@ -4,10 +4,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/", [IndexController::class, 'index']);
+Route::get("/", [IndexController::class, 'index'])->name('login');
 
 
 Route::middleware(['auth'])->group(function () {
+
 
     Route::post("/activity", [IndexController::class, 'store']);
     Route::put("/activity/{id}", [IndexController::class, 'handleCompleted']);
