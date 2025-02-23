@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::post("/login", [AuthController::class, 'loginHandle']);
+Route::get("/logout", [AuthController::class, 'logout']);

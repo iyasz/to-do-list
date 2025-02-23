@@ -24,9 +24,19 @@ class AuthController extends Controller
             $user = new User();
             $user->name = $inp;
             $user->save();
+
+            Auth::login($user);
             return redirect("/")->with("success", "Selamat datatng!");
         }
 
 
+    }
+
+    function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect("/");
     }
 }
