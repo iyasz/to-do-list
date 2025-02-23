@@ -18,7 +18,32 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 
-{{-- NOTIFICATION  --}}
+{{-- NOTIFICATION ALERT  --}}
+@if(SESSION("success"))
+<div id="alert" class="flex justify-center duration-300 scale-50 fixed top-[20px] right-[50%] translate-x-[50%] z-[100]">
+    <div class="md:w-[360px] w-[82vw] bg-green-100 border border-slate-700 rounded-md shadow-[3px_3px_0px_0px_rgba(22,101,52,1)]">
+        <div class="p-3 flex items-center h-full justify-center">
+            <div class="text-center ">
+                <h1 class="md:text-xl text-md font-semibold tracking-wide mb-1">Notification</h1>
+                <p class="tracking-wide md:text-sm text-xs leading-[1.1]">{{ SESSION("success") }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
+@error('*')
+<div id="alert" class="flex justify-center duration-300 scale-50 fixed top-[20px] right-[50%] translate-x-[50%] z-[100]">
+    <div class="md:w-[360px] w-[82vw] bg-red-100 border border-slate-700 rounded-md shadow-[3px_3px_0px_0px_rgba(185,28,28,1)]">
+        <div class="p-3 flex items-center h-full justify-center">
+            <div class="text-center">
+                <h1 class="md:text-xl text-md font-semibold tracking-wide mb-1">Notification</h1>
+                <p class="tracking-wide md:text-sm text-xs leading-[1.1]">{{ $errors->first() }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+@enderror
 
 
 
@@ -209,5 +234,25 @@ btnCancel.addEventListener("click", function () {
     btnDelete.classList.add("hidden");
 });
 </script>
+
+<script>
+    setTimeout(() => {
+        let alertBox = document.getElementById("alert");
+        
+        if (alertBox) {
+        alertBox.classList.remove("scale-50");
+        alertBox.classList.add("scale-100");
+
+        setTimeout(() => {
+            alertBox.classList.add("opacity-0", "scale-75");
+            setTimeout(() => {
+            alertBox.remove();
+            }, 300);
+        }, 3000);
+
+        }
+    }, 100);
+</script>
+  
 </body>
 </html>
