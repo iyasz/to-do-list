@@ -33,6 +33,7 @@ git clone https://github.com/iyasz/to-do-list.git
 - Duplicate .env.example and rename it to .env
 - Config your MySQL database in .env
 - run ```php artisan key:generate```
+- run ```php artisan migrate```
 - run ```php artisan serve```
 - Open your browser http://127.0.0.1:8000
 
